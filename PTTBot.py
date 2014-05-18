@@ -44,6 +44,10 @@ class PTTBot:
          if self.debug is 1:
             self.showScreen(msg)
          return msg
+      else:
+         if self.debug is 1:
+            print 'receive msg timeout'
+         return None
 
    def leave(self):
 
