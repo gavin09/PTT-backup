@@ -17,77 +17,80 @@ class PTTBot:
       self.debug = 1
    def login(self, account, password):
       self.socket.connect(('ptt.cc',23))
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg(account + '\r' + password + '\r')
-      self.showScreen()
+      self.recvMsg()
 
       # Jump to main menu
       self.sendMsg('\r')
-      self.showScreen()
+      self.recvMsg()
 
    def sendMsg(self, message):
       if self.debug is 1:
          print message
       self.socket.send(message)
 
-   def recvMsg(self, message):
-      self.socket.recv(65535).decode('big5', 'ignore')
+   def recvMsg(self):
+      if self.debug is 1:
+         time.sleep(3)
+      else:
+         time.sleep(1)
+
+      msg = self.socket.recv(65535).decode('big5', 'ignore')
+
+      if self.debug is 1:
+         self.showScreen(msg)
+
+      return msg
 
    def leave(self):
 
       # If there is a search, we need more left arrow to leave
       for i in range(0, self.leaveCount):
          self.sendMsg(LeftArrow)
-         self.showScreen()
+         self.recvMsg()
 
       # left arrow
       self.sendMsg(LeftArrow)
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg('q')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg(LeftArrow)
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg('\r')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg('y')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg('\r')
-      self.showScreen()
+      self.recvMsg()
 
       self.socket.close()
    def goBoard(self, board):
       self.sendMsg('s')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg(board + '\r')
-      self.showScreen()
+      self.recvMsg()
    def search(self, rule):
       # Fix, we need skip animation
       self.sendMsg('Z')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg('Z')
-      self.showScreen()
+      self.recvMsg()
 
       self.sendMsg(rule + '\r')
-      self.showScreen()
+      self.recvMsg()
 
       self.leaveCount = self.leaveCount + 1
 
 #   def backup(self):
 #
-   def showScreen(self):
-      if self.debug is 1:
-         time.sleep(5)
-      else:
-         time.sleep(1)
-
-      msg = self.socket.recv(65535).decode('big5', 'ignore')
-      print msg
-      return msg
+   def showScreen(self, message):
+      print message
