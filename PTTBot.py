@@ -9,6 +9,7 @@ class PTTBot:
 
       self.leaveCount = 0
 
+      self.debug = 1
    def login(self, account, password):
       self.socket.connect(('ptt.cc',23))
       self.showScreen()
@@ -21,7 +22,8 @@ class PTTBot:
       self.showScreen()
 
    def sendMsg(self, message):
-      print message
+      if self.debug is 1:
+         print message
       self.socket.send(message)
 
    def recvMsg(self, message):
@@ -76,7 +78,10 @@ class PTTBot:
 #   def backup(self):
 #
    def showScreen(self):
-      time.sleep(1)
+      if self.debug is 1:
+         time.sleep(5)
+      else:
+         time.sleep(1)
 
       msg = self.socket.recv(65535).decode('big5', 'ignore')
       print msg
