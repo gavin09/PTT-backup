@@ -1,5 +1,6 @@
 import socket
 import time
+import select
 
 UpArrow    = '\x1b0A'
 DownArrow  = '\x1b0B'
@@ -34,15 +35,15 @@ class PTTBot:
    def recvMsg(self):
       if self.debug is 1:
          time.sleep(3)
-      else:
-         time.sleep(1)
 
-      msg = self.socket.recv(65535).decode('big5', 'ignore')
+      timeout_in_seconds = 1
+      ready = select.select([self.socket], [], [], timeout_in_seconds)
 
-      if self.debug is 1:
-         self.showScreen(msg)
-
-      return msg
+      if ready[0]:
+         msg = self.socket.recv(65535).decode('big5', 'ignore')
+         if self.debug is 1:
+            self.showScreen(msg)
+         return msg
 
    def leave(self):
 
