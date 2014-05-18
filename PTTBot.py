@@ -1,6 +1,11 @@
 import socket
 import time
 
+UpArrow    = '\x1b0A'
+DownArrow  = '\x1b0B'
+RightArrow = '\x1b0C'
+LeftArrow  = '\x1b0D'
+
 class PTTBot:
    def __init__(self):
       self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,17 +38,17 @@ class PTTBot:
 
       # If there is a search, we need more left arrow to leave
       for i in range(0, self.leaveCount):
-         self.sendMsg('\x1bOD')
+         self.sendMsg(LeftArrow)
          self.showScreen()
 
       # left arrow
-      self.sendMsg('\x1bOD')
+      self.sendMsg(LeftArrow)
       self.showScreen()
 
       self.sendMsg('q')
       self.showScreen()
 
-      self.sendMsg('\x1bOD')
+      self.sendMsg(LeftArrow)
       self.showScreen()
 
       self.sendMsg('\r')
