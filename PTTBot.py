@@ -75,7 +75,7 @@ class PTTBot:
       self.sendMsg('Z')
       self.showScreen()
 
-      self.sendMsg(rule)
+      self.sendMsg(rule + '\r')
       self.showScreen()
 
       self.leaveCount = self.leaveCount + 1
