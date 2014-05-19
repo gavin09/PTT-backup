@@ -72,12 +72,11 @@ class PTTBot:
       self.recvMsg()
 
       self.sendMsg(board + Enter)
-      self.recvMsg()
-   def search(self, rule):
-      # Fix, we need skip animation
-      self.sendMsg('Z')
-      self.recvMsg()
 
+      if u"請按任意鍵繼續" in self.recvMsg():
+         self.sendMsg(Enter)
+         self.recvMsg()
+   def search(self, rule):
       self.sendMsg('Z')
       self.recvMsg()
 
