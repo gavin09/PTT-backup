@@ -15,8 +15,6 @@ class PTTBot:
       self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
       self.socket.settimeout(60)
 
-      self.leaveCount = 0
-
       self.debug = 1
    def login(self, account, password):
       self.socket.connect(('ptt.cc',23))
@@ -84,9 +82,7 @@ class PTTBot:
       self.recvMsg()
 
       self.sendMsg(rule + Enter)
-#      self.recvMsg()
-
-      self.leaveCount = self.leaveCount + 1
+      self.recvMsg()
 
 #   def backup(self):
 #
