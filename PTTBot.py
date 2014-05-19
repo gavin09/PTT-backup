@@ -1,11 +1,13 @@
+# coding=utf-8
 import socket
 import time
 import select
 
-UpArrow    = '\x1b0A'
-DownArrow  = '\x1b0B'
-RightArrow = '\x1b0C'
-LeftArrow  = '\x1b0D'
+Enter      = '\r'
+UpArrow    = '\x1bOA'
+DownArrow  = '\x1bOB'
+RightArrow = '\x1bOC'
+LeftArrow  = '\x1bOD'
 
 class PTTBot:
    def __init__(self):
@@ -20,11 +22,11 @@ class PTTBot:
       self.socket.connect(('ptt.cc',23))
       self.recvMsg()
 
-      self.sendMsg(account + '\r' + password + '\r')
+      self.sendMsg(account + Enter + password + Enter)
       self.recvMsg()
 
       # Jump to main menu
-      self.sendMsg('\r')
+      self.sendMsg(Enter)
       self.recvMsg()
 
    def sendMsg(self, message):
@@ -47,32 +49,23 @@ class PTTBot:
       else:
          if self.debug is 1:
             print 'receive msg timeout'
-         return None
+         return ''
 
    def leave(self):
 
-      # If there is a search, we need more left arrow to leave
-      for i in range(0, self.leaveCount):
+      while u"主功能表" not in self.recvMsg():
          self.sendMsg(LeftArrow)
-         self.recvMsg()
-
-      # left arrow
-      self.sendMsg(LeftArrow)
-      self.recvMsg()
-
-      self.sendMsg('q')
-      self.recvMsg()
 
       self.sendMsg(LeftArrow)
       self.recvMsg()
 
-      self.sendMsg('\r')
+      self.sendMsg(Enter)
       self.recvMsg()
 
       self.sendMsg('y')
       self.recvMsg()
 
-      self.sendMsg('\r')
+      self.sendMsg(Enter)
       self.recvMsg()
 
       self.socket.close()
@@ -80,7 +73,7 @@ class PTTBot:
       self.sendMsg('s')
       self.recvMsg()
 
-      self.sendMsg(board + '\r')
+      self.sendMsg(board + Enter)
       self.recvMsg()
    def search(self, rule):
       # Fix, we need skip animation
@@ -90,8 +83,8 @@ class PTTBot:
       self.sendMsg('Z')
       self.recvMsg()
 
-      self.sendMsg(rule + '\r')
-      self.recvMsg()
+      self.sendMsg(rule + Enter)
+#      self.recvMsg()
 
       self.leaveCount = self.leaveCount + 1
 
