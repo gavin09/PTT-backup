@@ -3,6 +3,7 @@ import socket
 import time
 import select
 from Parser import Parser
+import os
 
 Enter      = '\r'
 UpArrow    = '\x1bOA'
@@ -89,4 +90,5 @@ class PTTBot:
 #   def backup(self):
 #
    def showScreen(self, message):
+      os.system('clear')
       print message
