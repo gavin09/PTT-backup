@@ -2,6 +2,7 @@
 import socket
 import time
 import select
+from Parser import Parser
 
 Enter      = '\r'
 UpArrow    = '\x1bOA'
@@ -81,7 +82,9 @@ class PTTBot:
       self.recvMsg()
 
       self.sendMsg(rule + Enter)
-      self.recvMsg()
+      message = self.recvMsg()
+
+      Parser().Article(message)
 
 #   def backup(self):
 #
