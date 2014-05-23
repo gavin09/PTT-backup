@@ -1,5 +1,12 @@
+import ConfigParser
 import sys
 import re
+
+def getRule():
+   config = ConfigParser.ConfigParser()
+   config.optionform = str
+   config.read('config.ini')
+   return config
 
 def getBoardFromFile(filename):
    f = open(filename, 'r')
@@ -15,3 +22,5 @@ def getRuleFromFile(filename):
       rules[i] = re.sub('\n', '', rules[i])
    f.close()
    return rules
+
+

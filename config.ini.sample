@@ -1,0 +1,4 @@
+[Rule1]
+board  = Test
+Type   = num
+Target = 10
