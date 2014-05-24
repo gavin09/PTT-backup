@@ -3,6 +3,11 @@ import Config
 from PTTBot import PTTBot
 
 if __name__ == '__main__':
+
+   if len(sys.argv) is not 3:
+      print 'Error: command should be python main.py <account> <password>'
+      sys.exit(-1)
+
    account = sys.argv[1]
    passwd  = sys.argv[2]
 
