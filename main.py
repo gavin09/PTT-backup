@@ -3,21 +3,24 @@ import Config
 from PTTBot import PTTBot
 
 if __name__ == '__main__':
-   account = sys.argv[1]
-   passwd  = sys.argv[2]
-
-   boards  = Config.getBoardFromFile('boards.txt')
-   rules   = Config.getRuleFromFile('rules.txt')
+   config   = Config.ConfigReader('config.ini')
+   account  = config.getAccount()
+   passwd   = config.getPassword()
 
    pttbot = PTTBot()
    pttbot.login(account, passwd)
 
-   for board in boards:
+   sections = config.sections()
+
+   for section in sections:
+      board = config.get(section, 'board')
       pttbot.goBoard(board)
-      for rule in rules:
-         articles = pttbot.search(rule)
-#         for article in articles:
-#            pttbot.backup(article)
+
+      ruleType   = config.get(section, 'Type')
+      ruleTarget = config.get(section, 'Target')
+      articles = pttbot.search(ruleType, ruleTarget)
+#     for article in articles:
+#        pttbot.backup(article)
 #
    pttbot.leave()
 

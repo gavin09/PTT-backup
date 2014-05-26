@@ -35,4 +35,10 @@ class ConfigReader:
       f.close()
       return rules
 
+   def sections(self):
+      sections = self.config.sections()
+      sections.remove('Account')
+      return sections
 
+   def get(self, section, item):
+      return self.config.get(section, item)

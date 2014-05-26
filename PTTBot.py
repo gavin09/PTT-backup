@@ -78,11 +78,13 @@ class PTTBot:
       if u"請按任意鍵繼續" in self.recvMsg():
          self.sendMsg(Enter)
          self.recvMsg()
-   def search(self, rule):
-      self.sendMsg('Z')
+   def search(self, ruleType, target):
+
+      if ruleType is 'num':
+         self.sendMsg('Z')
       self.recvMsg()
 
-      self.sendMsg(rule + Enter)
+      self.sendMsg(target + Enter)
       message = self.recvMsg()
 
       Parser().Article(message)
