@@ -26,8 +26,9 @@ Target = <目標>
 
 
 ###未來支援的搜尋類型
-author
-title
+author  
+title  
+update read article
 
 
 
