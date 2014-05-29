@@ -4,9 +4,6 @@ import re
 import time
 import os
 
-
-ArticlePattern = re.compile("(^\s*[0-9]+)")
-
 class Parser:
    def __init__(self):
       self.debug = 0
@@ -15,7 +12,13 @@ class Parser:
       if self.debug is 1:
          print repr(message)
 
+      # Start with a space,        AricleNumber
+      ArticlePattern = re.compile("(^\s*[0-9]+)")
       DeleteArticlePattern = re.compile(u'(本文已被刪除)|(已被\w+刪除)')
+
+      # To figure unread articles           ArticleNumber
+      #                                         XXXXX   +
+      UnReadArticlePattern = re.compile('(^\s*[0-9]+)\s\+')
 
       # \xe2\x97\x8f is ●
       # 3H is the position of article id
@@ -28,8 +31,9 @@ class Parser:
             # PRINT RAW STRING
             print repr(line)
 
-         if ArticlePattern.search(line):
+         if ArticlePattern.search(line) and UnReadArticlePattern.search(line):
 
+            # This article exists
             if re.search(u'(本文已被刪除)|(已被\w+刪除)', line) is None:
                articleID = ArticlePattern.search(line).group(0).strip()
                if self.debug is 1:
