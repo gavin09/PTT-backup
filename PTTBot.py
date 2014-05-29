@@ -36,7 +36,7 @@ class PTTBot:
 
    def recvMsg(self):
       if self.debug is 1:
-         time.sleep(3)
+         time.sleep(1)
 
       timeout_in_seconds = 1
       ready = select.select([self.socket], [], [], timeout_in_seconds)
