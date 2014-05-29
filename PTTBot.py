@@ -89,6 +89,8 @@ class PTTBot:
          self.sendMsg('Z')
       if ruleType == 'author':
          self.sendMsg('a')
+      if ruleType == 'title':
+         self.sendMsg('/')
       self.recvMsg()
 
       self.sendMsg(target + Enter)
