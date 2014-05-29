@@ -4,6 +4,7 @@ import time
 import select
 from Parser import Parser
 import os
+import sys
 
 Enter      = '\r'
 UpArrow    = '\x1bOA'
@@ -23,7 +24,11 @@ class PTTBot:
       self.recvMsg()
 
       self.sendMsg(account + Enter + password + Enter)
-      self.recvMsg()
+      message = self.recvMsg()
+
+      if u'您想刪除其他重複登入的連線嗎' in message:
+         self.sendMsg('n' + Enter)
+         self.recvMsg()
 
       # Jump to main menu
       self.sendMsg(Enter)
