@@ -13,7 +13,7 @@ PTT-backup
 * 列出八卦版"爆文"
 * 團購版有沒有團購"襯衫"  
 
-###Usage
+###執行
 python main.py
 
 ###Write Config
@@ -46,7 +46,7 @@ Target = <目標>
 * 排程
 
 ### Report Bug / 解 Bug
-若使用過程當中有發現任何問題都歡迎到Issue提出問題。
+若使用過程當中有發現任何問題都歡迎到Issue提出問題。  
 當然也很歡迎幫忙解掉任何現有的Bug, 或新增一些功能。
 
 
