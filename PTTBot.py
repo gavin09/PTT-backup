@@ -80,17 +80,44 @@ class PTTBot:
          self.recvMsg()
    def search(self, ruleType, target):
 
-      if ruleType is 'num':
+      if ruleType == 'num':
          self.sendMsg('Z')
       self.recvMsg()
 
       self.sendMsg(target + Enter)
       message = self.recvMsg()
 
-      Parser().Article(message)
+      if self.debug is 1:
+         writer = open('dump.txt', 'w')
+         writer.write(message.encode('utf-8', 'ignore'))
+         writer.close()
 
-#   def backup(self):
-#
+      return Parser().Article(message)
+
+   def record(self, article):
+      self.sendMsg(article + Enter)
+      self.recvMsg()
+
+      self.sendMsg('Q')
+      message = self.recvMsg()
+
+      if self.debug is 1:
+         writer = open('case.txt', 'w')
+         writer.write(message.encode('utf-8', 'ignore'))
+         writer.close()
+
+      url = Parser().getWebUrl(message)
+      title = Parser().getTitle(message)
+
+      os.system('clear')
+      writer = open('result.txt', 'a')
+      writer.write(url.encode('ascii','ignore') + '\n')
+      writer.write(title.encode('utf-8','ignore') + '\n')
+      writer.write('================================\n')
+      writer.close()
+
+      self.sendMsg(Enter)
+
    def showScreen(self, message):
       os.system('clear')
       print message
