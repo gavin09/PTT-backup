@@ -1,7 +1,12 @@
 PTT-backup
 ==========
 ###Introuction
-平常在使用PTT的時候我習慣依照固定的搜尋方式來看看有沒有新文章，所以我希望有一個機器人可以幫我整理好文章，節省一些搜尋的時間
+平常在使用PTT的時候我習慣依照固定的搜尋方式來看看有沒有新文章  
+所以我希望有一個機器人可以幫我整理好文章，節省一些搜尋的時間
+
+####使用範例：
+* 喜歡看<作者>的文章
+* 喜歡看八卦版爆文
 
 ###Usage
 python main.py
@@ -23,12 +28,15 @@ Target = <目標>
 | Type          | Target        | 
 | ------------- |:-------------:| 
 | num           | 推文數量      | 
-
+| author        | AuthorID      |
 
 ###未來支援的搜尋類型
-author  
-title  
-update read article
+* ~~author~~
+* title  
+* update read article
 
+###未來會開發的功能
+* 寄信
+* 排程
 
 
