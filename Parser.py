@@ -22,7 +22,7 @@ class Parser:
 
       # \xe2\x97\x8f is ●
       # 3H is the position of article id
-      lines = re.split('3H|\\xe2\\x97\\x8f|\\r\\n', message)
+      lines = re.split(u'3H|●|\\r\\n', message)
 
       articles = []
       for line in lines:
