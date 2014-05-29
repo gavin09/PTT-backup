@@ -122,6 +122,14 @@ class PTTBot:
       writer.close()
 
       self.sendMsg(Enter)
+      self.recvMsg()
+
+      # Make It read
+      self.sendMsg(RightArrow)
+      self.recvMsg()
+
+      self.sendMsg(LeftArrow)
+      self.recvMsg()
 
    def showScreen(self, message):
       os.system('clear')
