@@ -91,6 +91,8 @@ class PTTBot:
          self.sendMsg('a')
       if ruleType == 'title':
          self.sendMsg('/')
+         target = unicode(target, 'utf-8')
+         target = target.encode('big5')
       self.recvMsg()
 
       self.sendMsg(target + Enter)
