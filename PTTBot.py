@@ -96,6 +96,7 @@ class PTTBot:
       self.recvMsg()
 
       self.sendMsg(target + Enter)
+      self.socket.send('\f')
       message = self.recvMsg()
 
       if self.debug is 1:
