@@ -19,6 +19,7 @@ class PTTBot:
       self.socket.settimeout(60)
 
       self.debug = 1
+      self.message = ""
    def login(self, account, password):
       self.socket.connect(('ptt.cc',23))
       self.recvMsg()
@@ -50,6 +51,7 @@ class PTTBot:
          msg = self.socket.recv(65535).decode('big5', 'ignore')
          if self.debug is 1:
             self.showScreen(msg)
+            self.message = msg
          return msg
       else:
          if self.debug is 1:
