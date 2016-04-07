@@ -44,7 +44,7 @@ class Parser:
       return articles
 
    def getWebUrl(self, message):
-      WebUrlPattern  = re.compile("http://www.ptt.cc/bbs/(\S)+(.html)")
+      WebUrlPattern  = re.compile("https://www.ptt.cc/bbs/(\S)+(.html)")
 
       if(WebUrlPattern.search(message)):
          url = WebUrlPattern.search(message).group(0).strip()
